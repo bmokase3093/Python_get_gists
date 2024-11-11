@@ -1,0 +1,70 @@
+version: 2.1
+
+# Define the jobs
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.11  # Use a Docker image with Python
+    steps:
+      - checkout  # Checkout the code
+      - run:
+          name: Install Docker
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y docker.io
+      - run:
+          name: Build Docker Image
+          command: docker build -t flask-gists .
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .  # Persist the working directory for the next job
+
+  test:
+    docker:
+      - image: circleci/python:3.11
+    steps:
+      - checkout  # Checkout the code
+      - run:
+          name: Install Docker
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y docker.io
+      - run:
+          name: Build Docker Image
+          command: docker build -t flask-gists .
+      - run:
+          name: Run Tests using pytest
+          command: docker run flask-gists pytest pytest_app.py
+
+  deploy:
+    docker:
+      - image: circleci/python:3.11
+    steps:
+      - checkout  # Checkout the code
+      - run:
+          name: Install Docker
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y docker.io
+      - run:
+          name: Build Docker Image
+          command: docker build -t flask-gists .
+      - run:
+          name: Deploy to Local Container
+          command: |
+            docker run -d -p 8080:8080 flask-gists
+            echo "Deployed to local container"
+
+# Define the workflows
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test

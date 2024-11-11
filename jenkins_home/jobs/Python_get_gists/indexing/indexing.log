@@ -1,0 +1,7 @@
+Started by user [8mha:////4DhmQgQax2+ERpbfsN6foZVEdi4tYMCUKThue+aR5Pc3AAAAnx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy+EgZh/dLi1CL9xJTczLzM4pKixJL8IgAIENjbyAAAAA==[0mBongani Mokase
+[Mon Nov 11 03:27:47 UTC 2024] Starting branch indexing...
+[8mha:////4JgTRC88Q8HuTMoDeuBRV22zfLITNcdRe/kdhHLPbyeoAAAAhB+LCAAAAAAAAP9b85aBtbiIwSa/KF0vKzUvOzOvODlTryCnNB3I0kvPLMkoTYpPKkrMS86IL84vLUpO1XPPLPEoTXLOzyvOz0n1yy9JZYAARiYGRi8GzpLM3NTiksTcgooiBqmM0pTi/Dy9ZIhiPayaGCoKgPRkSefU4wAyncr1jgAAAA==[0mConnecting to https://api.github.com with no credentials, anonymous access
+ERROR: [Mon Nov 11 03:27:47 UTC 2024] Could not update folder level actions from source blueocean
+[Mon Nov 11 03:27:47 UTC 2024] Finished branch indexing. Indexing took 0.83 sec
+FATAL: Invalid scan credentials when using anonymous access to connect to bmokase3093/Python_get_gists on https://api.github.com
+Finished: FAILURE
