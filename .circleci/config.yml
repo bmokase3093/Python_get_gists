@@ -11,8 +11,8 @@ jobs:
       - run:
           name: Install Docker CLI
           command: |
-            sudo apt-get update
-            sudo apt-get install -y docker.io
+            apt-get update
+            apt-get install -y docker.io
       - run:
           name: Build Docker Image
           command: docker build -t flask-gists .
@@ -30,8 +30,8 @@ jobs:
       - run:
           name: Install Docker CLI
           command: |
-            sudo apt-get update
-            sudo apt-get install -y docker.io
+            apt-get update
+            apt-get install -y docker.io
       - run:
           name: Build Docker Image
           command: docker build -t flask-gists .
@@ -48,8 +48,8 @@ jobs:
       - run:
           name: Install Docker CLI
           command: |
-            sudo apt-get update
-            sudo apt-get install -y docker.io
+            apt-get update
+            apt-get install -y docker.io
       - run:
           name: Build Docker Image
           command: docker build -t flask-gists .
