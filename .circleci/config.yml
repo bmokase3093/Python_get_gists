@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/python:3.11  # Use a Docker image with Python
+      - image: circleci/python:3.11-slim  # Use a Docker image with Python
     steps:
       - checkout  # Checkout the code
       - run:
