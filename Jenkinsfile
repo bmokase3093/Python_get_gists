@@ -50,7 +50,7 @@ pipeline {
             }
         }
 
-        stage('Deploy to Production') {
+        stage('Deploy the application') {
             when {
                 branch 'main'
             }

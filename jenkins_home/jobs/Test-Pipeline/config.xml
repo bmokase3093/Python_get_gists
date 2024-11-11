@@ -1,7 +1,88 @@
 <?xml version='1.1' encoding='UTF-8'?>
 <flow-definition plugin="workflow-job@1468.vcf4f5ee92395">
+  <actions>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction plugin="pipeline-model-definition@2.2214.vb_b_34b_2ea_9b_83"/>
+    <org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction plugin="pipeline-model-definition@2.2214.vb_b_34b_2ea_9b_83">
+      <jobProperties/>
+      <triggers/>
+      <parameters/>
+      <options/>
+    </org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction>
+  </actions>
+  <description></description>
   <keepDependencies>false</keepDependencies>
   <properties/>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@3990.vd281dd77a_388">
+    <script>pipeline {
+    agent {
+        docker { image &apos;python:3.11-slim&apos; }
+    }
+
+    environment {
+        IMAGE_NAME = &quot;git-hub-gists&quot;
+    }
+
+    stages {
+        stage(&apos;Clone Repository&apos;) {
+            steps {
+                // Use credentials for private repo access
+                checkout([
+                    $class: &apos;GitSCM&apos;, 
+                    branches: [[name: &apos;*/main&apos;]],
+                    userRemoteConfigs: [[
+                        url: &apos;https://github.com/bmokase3093/Python_get_gists.git&apos;,
+                        credentialsId: &apos;GitHub&apos;
+                    ]]
+                ])
+            }
+        }
+        
+        // Stage for installing dependencies
+        stage(&apos;Install Dependencies&apos;) {
+            steps {
+                script {
+                    // Ensure Docker is installed on the Jenkins agent
+                    sh &apos;docker --version&apos;
+                    sh &apos;pip install -r requirements.txt&apos;  // If you want to install Python dependencies directly
+                }
+            }
+        }
+
+        // Stage for running tests
+        stage(&apos;Run Tests&apos;) {
+            steps {
+                script {
+                    // Run the tests within the Docker container
+                    sh &apos;docker build -t ${IMAGE_NAME} .&apos;
+                    sh &apos;docker run --rm ${IMAGE_NAME} pytest test_app.py&apos; // Run pytest in the container
+                }
+            }
+        }
+
+        stage(&apos;Build Docker Image&apos;) {
+            steps {
+                sh &apos;docker build -t ${IMAGE_NAME} .&apos;
+            }
+        }
+
+        stage(&apos;Deploy to Production&apos;) {
+            when {
+                branch &apos;main&apos;
+            }
+            steps {
+                sh &apos;docker run -d -p 8080:8080 ${IMAGE_NAME}&apos;
+            }
+        }
+    }
+
+    post {
+        always {
+            sh &apos;docker system prune -f&apos;
+        }
+    }
+}</script>
+    <sandbox>false</sandbox>
+  </definition>
   <triggers/>
   <disabled>false</disabled>
 </flow-definition>

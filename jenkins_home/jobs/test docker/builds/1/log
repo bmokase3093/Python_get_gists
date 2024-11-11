@@ -1,0 +1,8 @@
+Started by user [8mha:////4DhmQgQax2+ERpbfsN6foZVEdi4tYMCUKThue+aR5Pc3AAAAnx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAy+EgZh/dLi1CL9xJTczLzM4pKixJL8IgAIENjbyAAAAA==[0mBongani Mokase
+Running as SYSTEM
+Building in workspace /var/jenkins_home/workspace/test docker
+[test docker] $ /bin/sh -xe /tmp/jenkins14655415522712661373.sh
++ docker --version
+/tmp/jenkins14655415522712661373.sh: 3: docker: not found
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE
