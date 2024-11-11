@@ -7,8 +7,7 @@ jobs:
       - image: python:3.11-slim  # Use a slim Python Docker image
     steps:
       - checkout  # Checkout the code
-      - setup_remote_docker:  # Enable Docker in Docker
-          version: 20.10.7
+      - setup_remote_docker  # Enable Docker in Docker without specifying version
       - run:
           name: Install Docker CLI
           command: |
@@ -27,8 +26,7 @@ jobs:
       - image: python:3.11-slim  # Use a Python Docker image
     steps:
       - checkout  # Checkout the code
-      - setup_remote_docker:
-          version: 20.10.7
+      - setup_remote_docker
       - run:
           name: Install Docker CLI
           command: |
@@ -46,8 +44,7 @@ jobs:
       - image: python:3.11-slim  # Use a Python Docker image
     steps:
       - checkout  # Checkout the code
-      - setup_remote_docker:
-          version: 20.10.7
+      - setup_remote_docker
       - run:
           name: Install Docker CLI
           command: |
