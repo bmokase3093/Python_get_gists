@@ -1,0 +1,12 @@
+services:
+  jenkins:
+    container_name: jenkins_gist
+    image: jenkins/jenkins:latest
+    ports:
+      - "8081:8080"
+    volumes:
+      - "$PWD/jenkins_home:/var/jenkins_home"
+    networks:
+      - gits_net
+networks:
+  gits_net:
